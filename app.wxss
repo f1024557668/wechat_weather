@@ -26,22 +26,17 @@
 }
 
 .mainContainer {
-  height:600rpx;
+  height:1000rpx;
   justify-content:center;
-}
-
-.mainPic {
-  width:80%;
-  height:90%;
 }
 
 .mainItem1 {
   width:100%;
-  height:70%;
+  height:40%;
   
 }
 
 .mainItem2 {
   width:100%;
-  height:30%;
+  height:60%;
 }

@@ -1,14 +1,45 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var order = ['red', 'yellow', 'blue', 'green', 'red']
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     result : {},
-    mainObj : {}
+    mainObj : {},
+    toView: 'red',
+    scrollTop: 100
   },
-  
+  //滚动条滚到顶部的时候触发
+  upper: function (e) {
+    console.log(e)
+  },
+  //滚动条滚到底部的时候触发
+  lower: function (e) {
+    console.log(e)
+  },
+  //滚动条滚动后触发
+  scroll: function (e) {
+    console.log(e)
+  },
+  //点击按钮切换到下一个view
+  tap: function (e) {
+    for (var i = 0; i < order.length; ++i) {
+      if (order[i] === this.data.toView) {
+        this.setData({
+          toView: order[i + 1]
+        })
+        break
+      }
+    }
+  },
+  //通过设置滚动条位置实现画面滚动
+  tapMove: function (e) {
+    this.setData({
+      scrollTop: this.data.scrollTop + 10
+    })
+  },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
@@ -29,10 +60,10 @@ Page({
         var now = new Date(), hour = now.getHours()
         var todayTempUrl = 'https://api.yytianqi.com/observe?city=' + latitude + ',' + longitude + '&key=l59wg5nh20oi46oi'
         that.fetchNowTemperature(todayTempUrl, hour)
-        // 12分钟取一次
+        // 20分钟取一次
         setInterval(function () {
           that.fetchNowTemperature(todayTempUrl, hour)
-        }, 1200000)
+        }, 2000000)
         var weekTempUrl = 'https://api.yytianqi.com/forecast7d?city=' + latitude + ',' + longitude + '&key=l59wg5nh20oi46oi'
         wx.request({
           url: weekTempUrl,
@@ -78,9 +109,11 @@ Page({
         var data = res.data
         if (data.msg == "Sucess") {
            _this.transformPicUrl(data, hour);
-          var temperatureDesc = "天气：" + data.data.tq + "\n当前温度：" + data.data.qw + "\n" + 
-            "当前风力：" + data.data.fl + "\n当前风向：" + data.data.fx + "\n" + 
-                                "当前湿度：" + data.data.sd + "%"
+          var weatherDesc = "天\t\t气：" + data.data.tq
+          var temperatureDesc = "当前温度：" + data.data.qw 
+          var flowDesc = "当前风力：" + data.data.fl
+          var fxDesc = "当前风向：" + data.data.fx
+          var sdDesc = "当前湿度：" + data.data.sd + "%"
           var result = _this.data.result
           result.counts = data.counts
           result.lastModifyTime = data.lastUpdate
@@ -88,7 +121,11 @@ Page({
             result: result,
             mainObj : {
               tempPicUrl: "https://raw.githubusercontent.com/f1024557668/WeChatProgramImage/master" + data.picUrl,
-              temperatureDesc: temperatureDesc
+              weatherDesc: weatherDesc,
+              temperatureDesc: temperatureDesc,
+              flowDesc: flowDesc,
+              fxDesc: fxDesc,
+              sdDesc: sdDesc
             }
           })
         }

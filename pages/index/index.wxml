@@ -9,7 +9,48 @@
       <image class="mainPic" src="{{mainObj.tempPicUrl}}"></image>
     </view>
     <view class="mainItem2">
-      <label>{{mainObj.temperatureDesc}}</label>
+      <div class="weui-flex">
+        <div class="weui-flex__item"><div class="placeholder">{{mainObj.weatherDesc}}</div></div>
+        <div class="weui-flex__item"><div class="placeholder">{{mainObj.temperatureDesc}}</div></div>
+      </div>
+      <div class="weui-flex">
+        <div class="weui-flex__item"><div class="placeholder">{{mainObj.flowDesc}}</div></div>
+        <div class="weui-flex__item"><div class="placeholder">{{mainObj.fxDesc}}</div></div>
+      </div>
+      <div class="weui-flex">
+        <div class="weui-flex__item"><div class="placeholder">{{mainObj.sdDesc}}</div></div>
+        <div class="weui-flex__item"><div class="placeholder"></div></div>
+      </div>
+      <div class="weui-flex">
+        <div class="weui-flex__item">
+          <div class="placeholder">
+            <view class="section section_gap">
+              <!--  white-space
+                normal: 正常无变化(默认处理方式.文本自动处理换行.假如抵达容器边界内容会转到下一行)
+                pre: 保持HTML源代码的空格与换行,等同与pre标签
+                nowrap: 强制文本在一行,除非遇到br换行标签
+                pre-wrap: 同pre属性,但是遇到超出容器范围的时候会自动换行
+                pre-line: 同pre属性,但是遇到连续空格会被看作一个空格
+                inherit: 继承
+                <scroll-view scroll-y="true" style="height: 200px">
+                  <view style="background: red; width: 100px; height: 100px" ></view>
+                  <view style="background: green; width: 100px; height: 100px"></view>
+                  <view style="background: blue; width: 100px; height: 100px"></view>
+                  <view style="background: yellow; width: 100px; height: 100px"></view>
+                </scroll-view>
+              -->
+              <!--水平滚动-->
+              <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
+              <!--  display: inline-block-->
+                <view style="background: red; width: 200px; height: 228px; display: inline-block" ></view>
+                <view style="background: green; width: 200px; height: 228px; display: inline-block"></view>
+                <view style="background: blue; width: 200px; height: 228px; display: inline-block"></view>
+                <view style="background: yellow; width: 200px; height: 228px; display: inline-block"></view>
+              </scroll-view>
+            </view>
+          </div>
+        </div>
+      </div>
     </view>
   </view>
   <view wx:for="{{result.list}}" wx:for-item="item">
