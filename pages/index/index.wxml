@@ -1,0 +1,21 @@
+<view class="container">
+ <view class="item1">
+  <label>
+    {{result.cityName}},剩余访问次数{{result.counts}}{{result.lastModifyTime}}
+  </label>
+ </view>
+  <view class="mainContainer">
+    <view class="mainItem1">
+      <image class="mainPic" src="{{mainObj.tempPicUrl}}"></image>
+    </view>
+    <view class="mainItem2">
+      <label>{{mainObj.temperatureDesc}}</label>
+    </view>
+  </view>
+  <view wx:for="{{result.list}}" wx:for-item="item">
+    <view class="item1">
+       天气{{item.temperature}}，温度{{item.degree}}，风力{{item.flow}}，风向{{item.flowx}}
+       <image class="tpic" src="{{item.picUrl}}"></image>
+    </view>
+  </view>
+</view>

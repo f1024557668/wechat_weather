@@ -1,0 +1,47 @@
+.container{
+    height: 100%;
+    width:100%;
+    background-color:beige;
+}
+
+.item1{
+    height:100rpx;
+    width:100%;
+    border: 1px solid #fff;
+    font-size:30rpx
+}
+
+.item1 label {
+  display: inline-block;
+}
+
+.item1 image {
+  width:56px;
+  height:45px;
+}
+
+.tpic {
+  position: absolute;
+  right:10rpx;
+}
+
+.mainContainer {
+  height:600rpx;
+  justify-content:center;
+}
+
+.mainPic {
+  width:80%;
+  height:90%;
+}
+
+.mainItem1 {
+  width:100%;
+  height:70%;
+  
+}
+
+.mainItem2 {
+  width:100%;
+  height:30%;
+}
