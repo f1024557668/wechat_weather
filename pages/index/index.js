@@ -1,3 +1,4 @@
+var util = require("../../utils/util.js")
 //index.js
 //获取应用实例
 var app = getApp()
@@ -60,9 +61,12 @@ Page({
         var now = new Date(), hour = now.getHours()
         var todayTempUrl = 'https://api.yytianqi.com/observe?city=' + latitude + ',' + longitude + '&key=l59wg5nh20oi46oi'
         that.fetchNowTemperature(todayTempUrl, hour)
+        var airUrl = 'http://api.yytianqi.com/air?city=' + latitude + ',' + longitude + '&key=l59wg5nh20oi46oi'
+        that.fetchAirQuantity(airUrl)
         // 20分钟取一次
         setInterval(function () {
           that.fetchNowTemperature(todayTempUrl, hour)
+          that.fetchAirQuantity(airUrl)
         }, 2000000)
         var weekTempUrl = 'https://api.yytianqi.com/forecast7d?city=' + latitude + ',' + longitude + '&key=l59wg5nh20oi46oi'
         wx.request({
@@ -101,6 +105,50 @@ Page({
       }
     })
   },
+  fetchAirQuantity: function(airUrl) {
+    var _this = this
+    wx.request({
+      url: airUrl,
+      success: function (res) {
+        var data = res.data
+        if (data.msg == "Sucess") {
+          var result = _this.data.result
+          result.counts = data.counts
+          var mainObj = _this.data.mainObj
+          
+          // AQI
+          mainObj.aqi= data.data.aqi,
+          // 主要污染物
+          mainObj.pollutant= data.data.pollutant,
+          // PM2.5浓度，单位μg/m3
+          mainObj.pm25= data.data.pm25,
+          // PM10浓度，单位μg/m3
+          mainObj.pm10= data.data.pm10,
+          // SO2浓度，单位μg/m3
+          mainObj.so2= data.data.so2,
+          // NO2浓度，单位μg/m3
+          mainObj.no2= data.data.no2,
+          //　污染级别
+          mainObj.level= data.data.level,
+          // 污染类别
+          mainObj.grade= data.data.grade,
+          // 建议使用颜色
+          mainObj.color= data.data.color,
+          // 健康影响
+          mainObj.health= data.data.health,
+          // 建议措施
+          mainObj.measure= data.data.measure,
+          mainObj.lastModifyTime= data.data.last_update
+          result.lastModifyTime = data.data.last_update
+          _this.setData({
+            result: result,
+            mainObj: mainObj
+          })
+        }
+      }
+    })
+  },
+  // 拉取现在的气温等参数
   fetchNowTemperature: function (todayTempUrl, hour) {
     var _this = this
     wx.request({
@@ -117,21 +165,22 @@ Page({
           var result = _this.data.result
           result.counts = data.counts
           result.lastModifyTime = data.lastUpdate
+          var mainObj = _this.data.mainObj
+          mainObj.tempPicUrl= "https://raw.githubusercontent.com/f1024557668/WeChatProgramImage/master" + data.picUrl
+          mainObj.weatherDesc= weatherDesc
+          mainObj.temperatureDesc= temperatureDesc
+          mainObj.flowDesc= flowDesc
+          mainObj.fxDesc= fxDesc,
+          mainObj.sdDesc= sdDesc
           _this.setData({
             result: result,
-            mainObj : {
-              tempPicUrl: "https://raw.githubusercontent.com/f1024557668/WeChatProgramImage/master" + data.picUrl,
-              weatherDesc: weatherDesc,
-              temperatureDesc: temperatureDesc,
-              flowDesc: flowDesc,
-              fxDesc: fxDesc,
-              sdDesc: sdDesc
-            }
+            mainObj: mainObj
           })
         }
       }
     })
   },
+  // 天气对应图片转换
   transformPicUrl: function(data, hour) {
     var numtq = data.data.numtq;
     if (numtq == '00') {
