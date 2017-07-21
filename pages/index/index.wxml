@@ -1,8 +1,8 @@
 <view class="container">
- <view class="item1">
-  <label>
-    {{result.cityName}},剩余访问次数{{result.counts}},{{result.lastModifyTime}}
-  </label>
+ <view>
+  <text>
+    {{result.cityName}},{{result.lastModifyTime}}
+  </text>
  </view>
   <view class="mainContainer">
     <view class="mainItem1">
