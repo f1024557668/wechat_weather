@@ -30,28 +30,19 @@
   font-size:30rpx;
 }
 
-.bc_green{
-    background-color: green;
-}
-.bc_red{
-background-color: red;
-}
-.bc_yellow{
-background-color: yellow;
-}
-.bc_blue{
-background-color: blue;
-}
-.scroll-view-item{
-    height: 100px;
-}
-.scroll-view_H{
-    height: 100px; 
-    white-space: nowrap;   
-    display: flex;   
-}
-.scroll-view-item_H{    
-    height: 100px;
-    width: 150px;
-    display: inline-block;
-}
+.uploadWrap{
+  height:280rpx; 
+  width:100%; 
+  display: flex; 
+  display: -webkit-box; 
+  flex-direction: column;
+}  
+.upload_Item{ 
+  width: 160rpx; 
+  height: 280rpx;  
+  flex: 1;
+}  
+.upload_Item_img{ 
+  width: 160rpx; 
+  height: 280rpx;
+}  

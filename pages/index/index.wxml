@@ -6,7 +6,7 @@
  </view>
   <view class="mainContainer">
     <view class="mainItem1">
-      <image class="mainPic" src="{{mainObj.tempPicUrl}}"></image>
+      <image class="mainPic" src="{{mainObj.tempPicUrl}}" style="display:inline"></image>
     </view>
     <view class="mainItem2">
       <div class="weui-flex">
@@ -47,14 +47,15 @@
                   <view style="background: yellow; width: 100px; height: 100px"></view>
                 </scroll-view>
               -->
-              <!--水平滚动-->
-              <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
-              <!--  display: inline-block-->
-                <view style="background: red; width: 200px; height: 228px; display: inline-block" ></view>
-                <view style="background: green; width: 200px; height: 228px; display: inline-block"></view>
-                <view style="background: blue; width: 200px; height: 228px; display: inline-block"></view>
-                <view style="background: yellow; width: 200px; height: 228px; display: inline-block"></view>
-              </scroll-view>
+              <!--水平滚动
+              <scroll-view scroll-x="true">  
+                <view class="uploadWrap" scroll-x="true" >  
+                  <view class="upload_Item" wx:for="{{imgUrls}}" wx:key="id">  
+                    <image class="upload_Item_img" src="{{item.imgurl}}" data-id="{{item.id}}"></image>  
+                    <icon type="clear" size="16" class="upload_Btn" color="#f64400"></icon> 
+                  </view>  
+                </view>  
+              </scroll-view>  -->
             </view>
           </div>
         </div>
