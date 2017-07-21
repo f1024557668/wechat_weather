@@ -5,7 +5,7 @@
 }
 
 .item1{
-    height:100rpx;
+    height:180rpx;
     width:100%;
     border: 1px solid #fff;
     font-size:30rpx
@@ -16,8 +16,9 @@
 }
 
 .item1 image {
-  width:56px;
-  height:45px;
+  width:100px;
+  height:70px;
+  margin-top:10px;
 }
 
 .tpic {
