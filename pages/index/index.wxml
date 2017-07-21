@@ -1,25 +1,20 @@
 <view class="container">
- <view>
-  <text>
-    {{result.cityName}},{{result.lastModifyTime}}
-  </text>
- </view>
   <view class="mainContainer">
     <view class="mainItem1">
       <image class="mainPic" src="{{mainObj.tempPicUrl}}" style="display:inline"></image>
     </view>
     <view class="mainItem2">
       <div class="weui-flex">
+        <div class="weui-flex__item"><div class="placeholder">位置：{{result.cityName}}</div></div>
         <div class="weui-flex__item"><div class="placeholder">{{mainObj.weatherDesc}}</div></div>
+      </div>
+      <div class="weui-flex">
         <div class="weui-flex__item"><div class="placeholder">{{mainObj.temperatureDesc}}</div></div>
-      </div>
-      <div class="weui-flex">
         <div class="weui-flex__item"><div class="placeholder">{{mainObj.flowDesc}}</div></div>
-        <div class="weui-flex__item"><div class="placeholder">{{mainObj.fxDesc}}</div></div>
       </div>
       <div class="weui-flex">
+        <div class="weui-flex__item"><div class="placeholder">{{mainObj.fxDesc}}</div></div>
         <div class="weui-flex__item"><div class="placeholder">{{mainObj.sdDesc}}</div></div>
-        <div class="weui-flex__item"><div class="placeholder"></div></div>
       </div>
       <div class="weui-flex">
         <div class="weui-flex__item">
